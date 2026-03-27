@@ -1,0 +1,2 @@
+"""Browser abstraction package."""
+
