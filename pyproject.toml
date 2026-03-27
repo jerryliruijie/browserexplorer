@@ -25,7 +25,7 @@ browser-agent = "app.main:app"
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
 
 [tool.setuptools.packages.find]
 include = ["app*"]
-

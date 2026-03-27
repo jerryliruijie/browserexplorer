@@ -6,7 +6,8 @@ from app.agent.critic import Critic, SimpleCritic
 from app.agent.planner import HeuristicPlanner, Planner
 from app.browser.observer import BrowserObserver
 from app.browser.runtime import BrowserRuntime
-from app.memory.state import ActionRecord, AgentState
+from app.memory.history import ActionRecord
+from app.memory.state import AgentState
 from app.memory.store import StateStore
 from app.tools.registry import ToolRegistry
 
@@ -30,8 +31,8 @@ class AgentOrchestrator:
         self.planner = planner or HeuristicPlanner()
         self.critic = critic or SimpleCritic()
 
-    def run(self, task: str) -> AgentState:
-        state = self.store.initialize(task=task)
+    def run(self, task: str, max_steps: int = 12) -> AgentState:
+        state = self.store.initialize(task=task, max_steps=max_steps)
 
         while not state.done and state.step_count < state.max_steps:
             snapshot = self.observer.observe(self.runtime)
