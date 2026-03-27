@@ -1,5 +1,6 @@
 .idea/
 .pytest_cache/
+pytest-cache-files-*/
 .venv/
 *.egg-info/
 __pycache__/
