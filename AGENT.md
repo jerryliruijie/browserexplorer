@@ -16,6 +16,8 @@ This repository implements a browser agent skeleton that demonstrates agent desi
 
 ## Architecture Rules
 
+- Keep the architecture clear and easy to reason about as the codebase grows.
+- Keep module boundaries explicit and defend them during feature work.
 - Do not pass full raw HTML directly to the LLM.
 - Do not let the LLM generate arbitrary Playwright scripts.
 - Do not bypass the tool registry from planner or orchestrator code.
@@ -29,11 +31,22 @@ This repository implements a browser agent skeleton that demonstrates agent desi
 3. Preserve the observe -> plan -> act -> reflect loop.
 4. Make planner schemas, snapshots, registry behavior, and state transitions easy to test.
 
+## Development Workflow
+
+- Do not try to complete every requested task in one large change.
+- Split work into small, reviewable features or fixes whenever practical.
+- Test continuously during development instead of waiting until the end.
+- Keep each commit focused on one coherent unit of change.
+- Aim to keep each commit under 300 added lines of code.
+- Keep every `AGENT.md` precise enough that future work can follow its rules without guessing.
+- Write detailed commit messages that state where the change happened, what changed, and what behavior or feature it adds or fixes.
+- Prefer conventional commit prefixes such as `feat:`, `fix:`, `refactor:`, and `test:` when they fit the change.
+
 ## Style
 
 - Use Python 3.11+ with Pydantic models where structured validation matters.
-- Keep Markdown and code comments in English, except `README.md`, which may stay in Chinese.
-- Write TODO markers where behavior is intentionally deferred.
+- Keep all files in English, including code, comments, docs, and `AGENT.md`, except `README.md`, which may stay in Chinese.
+- When behavior is intentionally deferred, add an explicit `TODO` marker instead of silently omitting the implementation.
 
 ## Testing
 
