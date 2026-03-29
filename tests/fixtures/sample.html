@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fixture Page</title>
+  </head>
+  <body>
+    <h1>Fixture Page</h1>
+    <p id="status">Ready</p>
+    <input id="query" placeholder="keywords" />
+    <button
+      id="search"
+      onclick="document.getElementById('status').textContent = document.getElementById('query').value || 'Clicked';"
+    >
+      Search
+    </button>
+    <script>
+      document.getElementById('query').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          document.getElementById('status').textContent = `Submitted:${event.target.value}`;
+        }
+      });
+    </script>
+  </body>
+</html>

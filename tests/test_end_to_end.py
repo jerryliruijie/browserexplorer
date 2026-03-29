@@ -5,17 +5,19 @@ from app.memory.store import StateStore
 from app.tools.registry import ToolRegistry
 
 
-def test_orchestrator_runs_minimal_loop_and_builds_report() -> None:
+def test_orchestrator_runs_minimal_loop_and_builds_report(
+    runtime: BrowserRuntime, sample_page: str
+) -> None:
     orchestrator = AgentOrchestrator(
-        runtime=BrowserRuntime(),
+        runtime=runtime,
         observer=BrowserObserver(),
         registry=ToolRegistry(),
         store=StateStore(),
     )
 
-    state = orchestrator.run(task="https://example.com", max_steps=4)
+    state = orchestrator.run(task=sample_page, max_steps=4)
 
     assert state.done is True
     assert state.action_history[-1].action_name == "extract_text"
-    assert "texts" in state.extracted_data
+    assert "Fixture Page" in state.extracted_data["texts"]
     assert "Task:" in state.final_report
