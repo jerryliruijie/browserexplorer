@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0.0",
+  "pytest-cov>=5.0.0",
 ]
 
 [project.scripts]
@@ -25,7 +26,14 @@ browser-agent = "app.main:app"
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
-addopts = "-p no:cacheprovider"
+addopts = "--cov=app --cov-report=term-missing --cov-fail-under=95 -p no:cacheprovider"
+
+[tool.coverage.run]
+source = ["app"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
 
 [tool.setuptools.packages.find]
 include = ["app*"]

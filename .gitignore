@@ -5,6 +5,9 @@ pytest-cache-files-*/
 *.egg-info/
 __pycache__/
 *.pyc
+.coverage
+.tmp/
+logs-test/
 logs/*
 !logs/.gitkeep
 .playwright/
